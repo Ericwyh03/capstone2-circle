@@ -22,6 +22,7 @@ CREATE TABLE users (
   profile_image VARCHAR(255),
   institution_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NULL DEFAULT NULL,
   FOREIGN KEY (institution_id) REFERENCES institutions(id)
 );
 
@@ -50,13 +51,6 @@ CREATE TABLE matches (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id_1) REFERENCES users(id),
   FOREIGN KEY (user_id_2) REFERENCES users(id)
-);
-
-
-CREATE TABLE Institution (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(100) NOT NULL,
-  location VARCHAR(100)
 );
 
 -- Insert interests
@@ -161,37 +155,7 @@ INSERT INTO interests (name) VALUES ('Martial Arts');
 INSERT INTO interests (name) VALUES ('Parkour');
 -- Insert a sample institution
 INSERT INTO institutions (name, location) VALUES ('Sunway University', 'Malaysia');
--- Insert dummy users
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User1', 'user1@circle.com', 'hashed_password', 'Bio of user 1', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User2', 'user2@circle.com', 'hashed_password', 'Bio of user 2', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User3', 'user3@circle.com', 'hashed_password', 'Bio of user 3', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User4', 'user4@circle.com', 'hashed_password', 'Bio of user 4', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User5', 'user5@circle.com', 'hashed_password', 'Bio of user 5', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User6', 'user6@circle.com', 'hashed_password', 'Bio of user 6', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User7', 'user7@circle.com', 'hashed_password', 'Bio of user 7', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User8', 'user8@circle.com', 'hashed_password', 'Bio of user 8', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User9', 'user9@circle.com', 'hashed_password', 'Bio of user 9', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User10', 'user10@circle.com', 'hashed_password', 'Bio of user 10', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User11', 'user11@circle.com', 'hashed_password', 'Bio of user 11', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User12', 'user12@circle.com', 'hashed_password', 'Bio of user 12', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User13', 'user13@circle.com', 'hashed_password', 'Bio of user 13', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User14', 'user14@circle.com', 'hashed_password', 'Bio of user 14', NULL, 1);
-INSERT INTO users (name, email, password, bio, profile_image, institution_id)
-    VALUES ('User15', 'user15@circle.com', 'hashed_password', 'Bio of user 15', NULL, 1);
+
 -- Assign interests to users
 INSERT INTO user_interests (user_id, interest_id) VALUES (1, 73);
 INSERT INTO user_interests (user_id, interest_id) VALUES (1, 60);

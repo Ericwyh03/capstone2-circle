@@ -1,0 +1,55 @@
+
+.sidebar.open {
+    width: 30%;
+}
+
+.sidebar.open {
+    width: 30%;
+}
+
+.sidebar.collapsed {
+    width: 60px;
+    padding: 1rem;
+}
+
+
+.toggle-btn {
+    background-color: #61dafb;
+    border: none;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+.toggle-btn {
+    align-self: flex-end;
+    margin-left: auto;
+    margin-right: 10%;
+    margin-top: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #61dafb;
+    color: black;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.toggle-btn:hover {
+    background-color: #21a1f1;
+}
+
+.sidebar.open .toggle-btn {
+    transform: rotate(0deg);
+}
+
+.sidebar.collapsed .toggle-btn {
+    transform: rotate(180deg);
+}

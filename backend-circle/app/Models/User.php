@@ -41,9 +41,14 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    /* Relationship with institution */
+    public function interests()
+    {
+        return $this->belongsToMany(Interest::class, 'user_interests');
+    }
+
     public function institution()
     {
         return $this->belongsTo(Institution::class);
     }
+
 }

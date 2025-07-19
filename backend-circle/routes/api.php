@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\InstitutionController;
+use App\Http\Controllers\API\MatchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\API\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,5 +20,9 @@ Route::middleware(['auth:api'])->group(function () {
     Route::put('/profile', [ProfileController::class, 'updateProfile']);
     Route::put('/profile/auth', [ProfileController::class, 'updateAuth']);
     Route::get('/institutions/search', [InstitutionController::class, 'search']);
+
+    //Main Function - Matchmaking
+    Route::get('/matches', [MatchController::class, 'findMatches']);
+
 
 });

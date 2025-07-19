@@ -1,0 +1,83 @@
+.matchmaking-container {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+    margin: 20px;
+    color: #333;
+    animation: fadeIn 0.5s ease;
+}
+
+.matchmaking-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #3d3d3d;
+}
+
+.match-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.match-card {
+    background: rgba(255, 255, 255, 0.75);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s;
+}
+
+.match-card:hover {
+    transform: translateY(-4px);
+}
+
+.match-name {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #2b2b2b;
+}
+
+.match-meta {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.match-bio {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.match-interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.interest-chip {
+    background-color: #ffcad4;
+    color: #4a4a4a;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: none;
+}
+
+.no-matches {
+    color: #777;
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

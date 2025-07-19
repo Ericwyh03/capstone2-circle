@@ -99,8 +99,54 @@ import '../styles/sidebar.css';
 //     );
 // }
 // 📄 src/components/Sidebar.jsx
-function Sidebar({ isOpen, onToggle, onChangeView }) {
-    const navigate = useNavigate();
+// function Sidebar({ isOpen, onToggle, onChangeView }) {
+//     const navigate = useNavigate();
+//     const { user } = useAuth();
+//
+//     return (
+//         <div className={`sidebar ${isOpen ? 'open' : 'collapsed'}`}>
+//             <button className="toggle-btn" onClick={onToggle}>
+//                 <span className="toggle-icon">{isOpen ? '⮜' : '⮞'}</span>
+//             </button>
+//
+//             {isOpen && (
+//                 <div className="profile-card">
+//                     <img src={avatar} alt="Avatar" className="avatar" />
+//                     <h3>{user?.name || 'Unnamed User'}</h3>
+//                     <p>{user?.institution?.name || 'Not Registered'}</p>
+//                     <button onClick={() => navigate('/profile')}>📝 Edit Profile</button>
+//                 </div>
+//             )}
+//
+//             {isOpen && (
+//                 <>
+//                     <hr />
+//                     <div className="main-buttons">
+//                         <button onClick={() => onChangeView('matchmaking')}>🔍 Matchmaking</button>
+//                         <button onClick={() => onChangeView('events')}>📅 Events</button>
+//                         <button onClick={() => onChangeView('mentorship')}>🧑‍🏫 Mentorship</button>
+//                     </div>
+//                     <hr />
+//                     <div className="quick-stats">
+//                         <p>Connections: 21</p>
+//                         <p>Events Joined: 5</p>
+//                         <p>Mentorships: 3</p>
+//                     </div>
+//                 </>
+//             )}
+//
+//             <div className="nav-footer">
+//                 <button onClick={() => onChangeView('dashboard')}>🏠 Home</button>
+//                 <button>⚙️ Settings</button>
+//                 <button>🚪 Logout</button>
+//             </div>
+//         </div>
+//     );
+// }
+//
+// export default Sidebar;
+// 📄 components/Sidebar.jsx
+function Sidebar({ isOpen, onToggle, setView }) {
     const { user } = useAuth();
 
     return (
@@ -114,7 +160,7 @@ function Sidebar({ isOpen, onToggle, onChangeView }) {
                     <img src={avatar} alt="Avatar" className="avatar" />
                     <h3>{user?.name || 'Unnamed User'}</h3>
                     <p>{user?.institution?.name || 'Not Registered'}</p>
-                    <button onClick={() => navigate('/profile')}>📝 Edit Profile</button>
+                    <button onClick={() => setView('profile')}>📝 Edit Profile</button>
                 </div>
             )}
 
@@ -122,9 +168,9 @@ function Sidebar({ isOpen, onToggle, onChangeView }) {
                 <>
                     <hr />
                     <div className="main-buttons">
-                        <button onClick={() => onChangeView('matchmaking')}>🔍 Matchmaking</button>
-                        <button onClick={() => onChangeView('events')}>📅 Events</button>
-                        <button onClick={() => onChangeView('mentorship')}>🧑‍🏫 Mentorship</button>
+                        <button onClick={() => setView('matchmaking')}>🔍 Matchmaking</button>
+                        <button onClick={() => setView('events')}>📅 Events</button>
+                        <button onClick={() => setView('mentorship')}>🧑‍🏫 Mentorship</button>
                     </div>
                     <hr />
                     <div className="quick-stats">
@@ -136,12 +182,11 @@ function Sidebar({ isOpen, onToggle, onChangeView }) {
             )}
 
             <div className="nav-footer">
-                <button onClick={() => onChangeView('dashboard')}>🏠 Home</button>
+                <button onClick={() => setView('dashboard')}>🏠 Home</button>
                 <button>⚙️ Settings</button>
                 <button>🚪 Logout</button>
             </div>
         </div>
     );
 }
-
 export default Sidebar;

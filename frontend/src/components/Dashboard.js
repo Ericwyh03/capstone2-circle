@@ -1,8 +1,10 @@
 // 📄 components/Dashboard.js
 import React from 'react';
 import rightbarImage from '../assets/rightbar.png';
+import useAuth from "../hooks/useAuth";
 
 function Dashboard() {
+    const { user} = useAuth();
     return (
         <div className="dashboard">
             {/* 🎉 Welcome banner with decorative flakes and overlay */}
@@ -17,7 +19,7 @@ function Dashboard() {
                 </div>
 
                 <div className="welcome-overlay">
-                    <h2>👋 Welcome back, Kris!</h2>
+                    <h2>👋 Welcome back, {user?.name || 'Unnamed User'}!</h2>
                     <p>Let’s help you connect, meet, and grow today.</p>
                 </div>
             </div>

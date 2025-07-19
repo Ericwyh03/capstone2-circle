@@ -4,6 +4,10 @@ DROP TABLE IF EXISTS user_interests;
 DROP TABLE IF EXISTS interests;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS institutions;
+DROP TABLE IF EXISTS events
+DROP TABLE IF EXISTS user_events;
+DROP TABLE IF EXISTS mentorships;
+DROP TABLE IF EXISTS connections;
 
 
 CREATE TABLE institutions (
@@ -52,6 +56,41 @@ CREATE TABLE matches (
   FOREIGN KEY (user_id_1) REFERENCES users(id),
   FOREIGN KEY (user_id_2) REFERENCES users(id)
 );
+
+CREATE TABLE events (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        name VARCHAR(100),
+                        date DATE,
+                        location VARCHAR(100)
+);
+
+CREATE TABLE user_events (
+                             user_id INT,
+                             event_id INT,
+                             PRIMARY KEY (user_id, event_id),
+                             FOREIGN KEY (user_id) REFERENCES users(id),
+                             FOREIGN KEY (event_id) REFERENCES events(id)
+);
+
+CREATE TABLE mentorships (
+                             id INT AUTO_INCREMENT PRIMARY KEY,
+                             mentor_id INT,
+                             mentee_id INT,
+                             started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                             FOREIGN KEY (mentor_id) REFERENCES users(id),
+                             FOREIGN KEY (mentee_id) REFERENCES users(id)
+);
+
+CREATE TABLE connections (
+                             id INT AUTO_INCREMENT PRIMARY KEY,
+                             user_id_1 INT,
+                             user_id_2 INT,
+                             status ENUM('pending', 'accepted', 'blocked') DEFAULT 'pending',
+                             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                             FOREIGN KEY (user_id_1) REFERENCES users(id),
+                             FOREIGN KEY (user_id_2) REFERENCES users(id)
+);
+
 
 -- Insert interests
 INSERT INTO interests (name) VALUES ('Anime');
@@ -289,3 +328,28 @@ INSERT INTO users (name, email, password, profile_image, institution_id, bio) VA
 ('Carmen Low', 'usertest3@gmail.com', 'abc123', 'default.png', 1, 'Passionate about photography and coffee.'),
 ('Daniel Wong', 'usertest4@gmail.com', 'abc123', 'default.png', 1, 'Enjoys hiking and tech meetups.'),
 ('Evelyn Chua', 'usertest5@gmail.com', 'abc123', 'default.png', 1, 'Quiet but curious about everything.');
+
+INSERT INTO connections (user_id_1, user_id_2, status) VALUES
+                                                           (1, 2, 'accepted'),
+                                                           (1, 3, 'accepted'),
+                                                           (2, 4, 'pending'),
+                                                           (3, 4, 'accepted');
+
+INSERT INTO events (name, date, location) VALUES
+                                              ('Circle Launch Event', '2025-08-01', 'Sunway Hall A'),
+                                              ('Peer Mentorship Kickoff', '2025-08-10', 'Online'),
+                                              ('Tech Networking Day', '2025-08-20', 'Taylor\''s Auditorium');
+
+INSERT INTO user_events (user_id, event_id) VALUES
+                                                (1, 1),
+                                                (1, 2),
+                                                (2, 2),
+                                                (3, 1),
+                                                (3, 3),
+                                                (4, 3);
+
+INSERT INTO mentorships (mentor_id, mentee_id) VALUES
+                                                   (1, 2),
+                                                   (1, 3),
+                                                   (4, 1);
+

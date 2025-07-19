@@ -15,6 +15,9 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'bio',
+        'profile_image',
+        'institution_id',
     ];
 
     protected $hidden = [
@@ -32,8 +35,15 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->getKey();
     }
+
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /* Relationship with institution */
+    public function institution()
+    {
+        return $this->belongsTo(Institution::class);
     }
 }

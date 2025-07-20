@@ -63,5 +63,12 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(MatchRequest::class, 'receiver_id');
     }
 
+    public function joinedEvents()
+    {
+        return $this->belongsToMany(Event::class, 'user_event')
+            ->withTimestamps()
+            ->withPivot('joined_at');
+    }
+
 
 }

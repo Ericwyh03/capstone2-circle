@@ -46,28 +46,110 @@
     gap: 1.5rem;
 }
 
-.event-card {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(8px);
-    border-radius: 20px;
-    padding: 1.5rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.event-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
 }
+
+/*.event-card {*/
+/*    backdrop-filter: blur(10px);*/
+/*    background: rgba(255, 255, 255, 0.1);*/
+/*    border-radius: 20px;*/
+/*    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);*/
+/*    padding: 1.5rem;*/
+/*    color: #fff;*/
+/*    transition: transform 0.3s ease, box-shadow 0.3s ease;*/
+/*    border: 1px solid rgba(255, 255, 255, 0.2);*/
+/*}*/
 
 .event-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
-.event-card h3 {
+.event-title {
+    font-size: 1.5rem;
+    font-weight: bold;
     margin-bottom: 0.5rem;
-    font-size: 1.4rem;
-    color: #3f3d56;
 }
 
-.event-card p {
-    margin: 0.25rem 0;
-    font-size: 0.95rem;
-    color: #444;
+.event-description {
+    margin-bottom: 1rem;
+    color: #e0e0e0;
 }
+
+.event-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.join-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    background: #38bdf8;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.join-btn:hover {
+    background: #0ea5e9;
+}
+
+.joined-status {
+    padding: 0.5rem 1rem;
+    background-color: #16a34a;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+}
+
+/*Trying New Multiple Colour Cards*/
+.event-card {
+    border-left: 5px solid transparent;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    color: #111827; /* neutral dark for contrast */
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Soft Gradient Themes */
+.event-card.blue {
+    background: linear-gradient(135deg, #dbeafe, #cffafe); /* pastel blue → cyan */
+    border-left: 5px solid #3b82f6;
+}
+
+.event-card.green {
+    background: linear-gradient(135deg, #dcfce7, #fef9c3); /* pastel green → light yellow */
+    border-left: 5px solid #22c55e;
+}
+
+.event-card.pink {
+    background: linear-gradient(135deg, #fce7f3, #ffe4e6); /* pastel pink → light rose */
+    border-left: 5px solid #ec4899;
+}
+
+.event-card.purple {
+    background: linear-gradient(135deg, #ede9fe, #e0f2fe); /* pastel purple → baby blue */
+    border-left: 5px solid #8b5cf6;
+}
+
+.event-card.default {
+    background: linear-gradient(135deg, #f3f4f6, #fdf2f8); /* soft gray → soft pink */
+    border-left: 5px solid #9ca3af;
+}
+

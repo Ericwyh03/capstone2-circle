@@ -67,6 +67,8 @@ CREATE TABLE events (
                         start_time DATETIME NOT NULL,
                         end_time DATETIME NULL,
                         location VARCHAR(255) NOT NULL,
+                        privacy ENUM('public', 'friends', 'private') DEFAULT 'public',
+                        color ENUM('blue', 'green', 'pink', 'purple', 'grey') DEFAULT 'blue';
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

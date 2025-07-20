@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
 import Matchmaking from './Matchmaking';
-import Events from './Events';
+import EventsPage from './EventsPage';
 import Mentorship from './Mentorship';
 import ProfilePage from './ProfilePage';
 import HeaderBar from './HeaderBar';
@@ -20,7 +20,7 @@ function HomePage() {
     const renderView = () => {
         switch (activeView) {
             case 'matchmaking': return <Matchmaking />;
-            case 'events': return <Events />;
+            case 'events': return <EventsPage />;
             case 'mentorship': return <Mentorship />;
             case 'profile': return <ProfilePage />;
             case 'matchRequests':return <MatchRequests />;

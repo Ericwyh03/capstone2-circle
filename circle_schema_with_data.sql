@@ -9,7 +9,8 @@ DROP TABLE IF EXISTS user_events;
 DROP TABLE IF EXISTS mentorships;
 DROP TABLE IF EXISTS connections;
 DROP TABLE IF EXISTS user_interests;
-DROP TABLE IF EXISTS match_requests
+DROP TABLE IF EXISTS match_requests;
+DROP TABLE IF EXISTS event_user;
 
 CREATE TABLE institutions (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -59,11 +60,17 @@ CREATE TABLE matches (
 );
 
 CREATE TABLE events (
-                        id INT AUTO_INCREMENT PRIMARY KEY,
-                        name VARCHAR(100),
-                        date DATE,
-                        location VARCHAR(100)
+                        id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                        creator_id BIGINT UNSIGNED NULL,
+                        name VARCHAR(255) NOT NULL,
+                        description TEXT NULL,
+                        start_time DATETIME NOT NULL,
+                        end_time DATETIME NULL,
+                        location VARCHAR(255) NOT NULL,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
 
 CREATE TABLE user_events (
                              user_id INT,
@@ -90,6 +97,18 @@ CREATE TABLE connections (
                              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                              FOREIGN KEY (user_id_1) REFERENCES users(id),
                              FOREIGN KEY (user_id_2) REFERENCES users(id)
+);
+
+CREATE TABLE event_user (
+                            id INT(11) AUTO_INCREMENT PRIMARY KEY,
+                            user_id INT(11) NOT NULL,
+                            event_id INT(11) NOT NULL,
+                            joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                            ADD COLUMN created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+                            ADD COLUMN updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
+                            CONSTRAINT fk_event_user_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+                            CONSTRAINT fk_event_user_event FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE
 );
 
 
@@ -409,3 +428,16 @@ VALUES
     (2, 1, 'pending', NOW(), NOW()),
     (3, 1, 'pending', NOW(), NOW()),
     (4, 1, 'pending', NOW(), NOW());
+
+INSERT INTO events (
+    creator_id, name, description, start_time, end_time, location, created_at, updated_at
+) VALUES (
+             1, -- replace with actual user ID from your `users` table
+             'Circle Mixer: Speed Friending Edition',
+             'A fast-paced event to meet new peers, share interests, and expand your Circle connections!',
+             '2025-07-25 18:00:00',
+             '2025-07-25 20:00:00',
+             'University Hall, Room B',
+             NOW(),
+             NOW()
+         );

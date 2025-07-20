@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\API\InstitutionController;
 use App\Http\Controllers\API\MatchController;
 use App\Http\Controllers\API\MatchRequestController;
@@ -22,7 +23,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::put('/profile/auth', [ProfileController::class, 'updateAuth']);
     Route::get('/institutions/search', [InstitutionController::class, 'search']);
 
-    //Main Function - Matchmaking
+    //Main Function 1 - Matchmaking
     Route::get('/matches', [MatchController::class, 'findMatches']);
 
     //Main Function - Matchmaking Extended
@@ -33,6 +34,10 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/match-requests/incoming', [MatchRequestController::class, 'incomingRequests']);
     Route::post('/match-request/respond', [MatchRequestController::class, 'respond'])->middleware('auth:api');
 
-
+    //Main Function 2 - Events
+    Route::post('/events', [EventController::class, 'store']);
+    Route::get('/events', [EventController::class, 'index']);
+    Route::post('/events/{event}/join', [EventController::class, 'join']);
+    Route::get('/myevents', [EventController::class, 'myEvents']);
 
 });

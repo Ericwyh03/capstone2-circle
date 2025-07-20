@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\InstitutionController;
 use App\Http\Controllers\API\MatchController;
+use App\Http\Controllers\API\MatchRequestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\API\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,14 @@ Route::middleware(['auth:api'])->group(function () {
 
     //Main Function - Matchmaking
     Route::get('/matches', [MatchController::class, 'findMatches']);
+
+    //Main Function - Matchmaking Extended
+    Route::post('/match-requests/accept/{id}', [MatchRequestController::class, 'accept']);
+    Route::get('/match-friends', [MatchRequestController::class, 'getMutualMatches']);
+    Route::get('/friends', [MatchRequestController::class, 'friends']);
+    Route::post('/match-request', [MatchRequestController::class, 'sendRequest']);
+    Route::get('/match-requests/incoming', [MatchRequestController::class, 'incomingRequests']);
+    Route::post('/match-request/respond', [MatchRequestController::class, 'respond']);
 
 
 });

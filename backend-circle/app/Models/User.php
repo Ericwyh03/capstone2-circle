@@ -51,4 +51,17 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(Institution::class);
     }
 
+    // Users who I’ve sent requests to
+    public function sentMatchRequests()
+    {
+        return $this->hasMany(MatchRequest::class, 'sender_id');
+    }
+
+// Users who sent requests to me
+    public function receivedMatchRequests()
+    {
+        return $this->hasMany(MatchRequest::class, 'receiver_id');
+    }
+
+
 }

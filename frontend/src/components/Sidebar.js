@@ -87,7 +87,7 @@ function Sidebar({ isOpen, onToggle, setView }) {
                     <img src={avatar} alt="Avatar" className="avatar" />
                     <h3>{user?.name || 'Unnamed User'}</h3>
                     <p>{user?.institution?.name || 'Not Registered'}</p>
-                    <button onClick={() => setView('profile')}>📝 Edit Profile</button>
+                    <button onClick={() => setView('profile')}>📝 Profile</button>
                 </div>
             )}
 

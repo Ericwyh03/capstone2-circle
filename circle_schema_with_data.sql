@@ -8,7 +8,8 @@ DROP TABLE IF EXISTS events
 DROP TABLE IF EXISTS user_events;
 DROP TABLE IF EXISTS mentorships;
 DROP TABLE IF EXISTS connections;
-
+DROP TABLE IF EXISTS user_interests;
+DROP TABLE IF EXISTS match_requests
 
 CREATE TABLE institutions (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -387,3 +388,24 @@ INSERT INTO user_interests (user_id, interest_id) VALUES
                                                       (4, 24),
                                                       (5, 26),
                                                       (6, 28);
+
+CREATE TABLE match_requests (
+                                id INT AUTO_INCREMENT PRIMARY KEY,
+                                sender_id INT NOT NULL,
+                                receiver_id INT NOT NULL,
+                                status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
+                                created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+                                updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+                                INDEX idx_sender (sender_id),
+                                INDEX idx_receiver (receiver_id),
+
+                                CONSTRAINT fk_sender FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
+                                CONSTRAINT fk_receiver FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+INSERT INTO match_requests (sender_id, receiver_id, status, created_at, updated_at)
+VALUES
+    (2, 1, 'pending', NOW(), NOW()),
+    (3, 1, 'pending', NOW(), NOW()),
+    (4, 1, 'pending', NOW(), NOW());

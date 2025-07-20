@@ -57,6 +57,16 @@ const Matchmaking = () => {
             .catch(err => console.log(err));
     }, []);
 
+    const handleSendMatchRequest = (receiverId) => {
+        axios.post('/match-requests', { receiver_id: receiverId })
+            .then(res => alert("Match request sent!"))
+            .catch(err => {
+                console.error("Failed to send match request:", err);
+                alert("Something went wrong.");
+            });
+    };
+
+
     return (
         <div className="matchmaking-container">
             <h2>✨ People You Might Connect With</h2>
@@ -75,6 +85,13 @@ const Matchmaking = () => {
                                     <span key={i} className="interest-chip">{interest}</span>
                                 ))}
                             </div>
+                            <button
+                                className="match-button"
+                                onClick={() => handleSendMatchRequest(user.id)}
+                            >
+                                Match
+                            </button>
+
                         </div>
                     ))}
                 </div>

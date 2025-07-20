@@ -81,3 +81,17 @@
         transform: translateY(0);
     }
 }
+.match-button {
+    margin-top: 10px;
+    padding: 8px 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.match-button:hover {
+    background-color: #45a049;
+}

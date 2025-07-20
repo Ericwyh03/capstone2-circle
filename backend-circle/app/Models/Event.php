@@ -17,6 +17,7 @@ class Event extends Model
         'end_time',
         'location',
         'privacy',
+        'color',
     ];
 
     // Relationship: Event creator

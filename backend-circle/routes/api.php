@@ -31,7 +31,8 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/friends', [MatchRequestController::class, 'friends']);
     Route::post('/match-request', [MatchRequestController::class, 'sendRequest']);
     Route::get('/match-requests/incoming', [MatchRequestController::class, 'incomingRequests']);
-    Route::post('/match-request/respond', [MatchRequestController::class, 'respond']);
+    Route::post('/match-request/respond', [MatchRequestController::class, 'respond'])->middleware('auth:api');
+
 
 
 });

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MatchRequest;
+use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class MatchRequestController extends Controller
 {
@@ -31,24 +33,26 @@ return response()->json(['message' => 'Match request sent']);
 
     public function friends(Request $request)
     {
-        $user = auth()->user();
+        $userId = auth()->id();
 
-        $friends = MatchRequest::where('status', 'accepted')
-            ->where(function ($query) use ($user) {
-                $query->where('sender_id', $user->id)
-                    ->orWhere('receiver_id', $user->id);
-            })
-            ->get()
-            ->map(function ($match) use ($user) {
-                return $match->sender_id === $user->id
-                    ? $match->receiver
-                    : $match->sender;
-            });
+        $matches = MatchRequest::where(function ($query) use ($userId) {
+            $query->where('sender_id', $userId)
+                ->orWhere('receiver_id', $userId);
+        })
+            ->where('status', 'accepted')
+            ->get();
+
+        $friendIds = $matches->map(function ($match) use ($userId) {
+            return $match->sender_id === $userId ? $match->receiver_id : $match->sender_id;
+        });
+
+        $friends = User::whereIn('id', $friendIds)->select('id', 'name', 'email')->get();
 
         return response()->json($friends);
     }
 
-public function incomingRequests()
+
+    public function incomingRequests()
 {
 $user = auth()->user();
 
@@ -60,19 +64,30 @@ $requests = MatchRequest::with('sender')
 return response()->json($requests);
 }
 
-public function respond(Request $request)
-{
-$user = auth()->user();
+    public function respond(Request $request)
+    {
 
-$matchRequest = MatchRequest::where('id', $request->id)
-->where('receiver_id', $user->id)
-->firstOrFail();
+        Log::info('Authenticated user:', ['id' => auth()->id()]);
+        Log::info('Incoming request', $request->all());
+        Log::info('Authenticated user:', [auth()->user()]);
+        $request->validate([
+            'request_id' => 'required|integer|exists:match_requests,id',
+            'status' => 'required|in:accepted,rejected',
+        ]);
 
-$matchRequest->status = $request->input('status'); // accepted / rejected
-$matchRequest->save();
+        $matchRequest = MatchRequest::findOrFail($request->request_id); // ✅ Make sure this is used
 
-return response()->json(['message' => 'Response recorded']);
-}
+        // Optional: Check that the current user is the recipient
+        if ($matchRequest->receiver_id !== auth()->id()) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $matchRequest->status = $request->status;
+        $matchRequest->save();
+
+        return response()->json(['message' => 'Match request updated successfully']);
+    }
+
     public function accept($id)
     {
         $request = MatchRequest::findOrFail($id);

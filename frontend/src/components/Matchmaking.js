@@ -58,7 +58,7 @@ const Matchmaking = () => {
     }, []);
 
     const handleSendMatchRequest = (receiverId) => {
-        axios.post('/match-requests', { receiver_id: receiverId })
+        axios.post('/match-request', { receiver_id: receiverId })
             .then(res => alert("Match request sent!"))
             .catch(err => {
                 console.error("Failed to send match request:", err);

@@ -33,7 +33,7 @@ function HeaderBar({ setActiveView }) {
             <div className="header-right">
                 <button onClick={() => setActiveView('dashboard')}>🏠 Home</button>
                 <button onClick={() => setActiveView('messages')}>💬 Messages</button>
-                <button onClick={() => setActiveView('profile')}>👥 Friends</button>
+                <button onClick={() => setActiveView('friends')}>👥 Friends</button>
                 <button onClick={() => setActiveView('matchRequests')}>📥 Match Requests</button>
                 <button onClick={() => setActiveView('theme')}>🌙 Theme</button>
             </div>

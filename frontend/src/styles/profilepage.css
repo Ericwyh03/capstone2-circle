@@ -184,3 +184,9 @@
     border-top: 1px solid #ddd;
     margin: 30px 0;
 }
+.icon {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+

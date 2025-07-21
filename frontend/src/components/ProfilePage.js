@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import '../styles/profilepage.css';
 import useAuth from '../hooks/useAuth';
 import api from '../api/axios';
+import { FaUserFriends, FaCalendarAlt, FaGraduationCap, FaChartBar, FaSave, FaLock, FaPen } from 'react-icons/fa';
+import { MdOutlineEmail, MdPassword } from 'react-icons/md';
+import { HiOutlineUserCircle } from 'react-icons/hi';
+
 
 const ProfilePage = () => {
     const { user } = useAuth();
@@ -81,7 +85,9 @@ const ProfilePage = () => {
     return (
         <div className="profile-container">
             <div className="profile-header">
-                <h2>👋 Welcome, {profileData.name}</h2>
+                <h2><HiOutlineUserCircle
+                    style={{verticalAlign: 'middle', marginRight: '8px'}}/>Welcome, {profileData.name}</h2>
+
                 <p>Email: {profileData.email}</p>
             </div>
 
@@ -95,16 +101,31 @@ const ProfilePage = () => {
                 </div>
 
                 <div className="profile-section stat-box">
-                    <h3>📊 Quick Stats</h3>
-                    <p>🧑‍🤝‍🧑 Connections: {profileData.stats?.connections}</p>
-                    <p>📅 Events Joined: {profileData.stats?.events}</p>
-                    <p>🎓 Mentorships: {profileData.stats?.mentorships}</p>
+                    <h3>
+                        <FaChartBar style={{verticalAlign: 'middle', marginRight: '6px', color: '#AEBAF8'}}/>
+                        Quick Stats
+                    </h3>
+
+                    <p><FaUserFriends
+                        style={{marginRight: '6px', color: '#341539'}}/>Connections: {profileData.stats?.connections}
+                    </p>
+                    <p><FaCalendarAlt style={{marginRight: '6px', color: '#F6EA41'}}/>Events
+                        Joined: {profileData.stats?.events}</p>
+                    <p><FaGraduationCap
+                        style={{marginRight: '6px', color: '#FFD6E8'}}/>Mentorships: {profileData.stats?.mentorships}
+                    </p>
+
                 </div>
             </div>
 
             <div className="profile-form-grid">
                 <div className="profile-section edit-profile-card">
-                    <h3>📝 Edit Profile</h3>
+                    <h3>
+                        <FaPen style={{marginRight: '6px', color: '#F048C6'}}/>
+                        Edit Profile
+                    </h3>
+
+
                     <label>Name</label>
                     <input
                         type="text"
@@ -139,26 +160,43 @@ const ProfilePage = () => {
                         </select>
                     )}
 
-                    <button onClick={handleProfileSave}>💾 Save Profile</button>
+                    <button onClick={handleProfileSave}>
+                        <FaSave style={{marginRight: '6px'}}/>
+                        Save Profile
+                    </button>
+
+
                 </div>
 
                 <div className="profile-section update-credentials-card">
-                    <h3>🔐 Update Login Credentials</h3>
-                    <label>Email</label>
+                    <h3>
+                        <FaLock style={{marginRight: '6px', color: '#9600FF'}}/>
+                        Update Login Credentials
+                    </h3>
+
+
+                    <label><MdOutlineEmail style={{marginRight: '4px', color: '#9600FF'}}/>Email</label>
                     <input
                         type="email"
                         value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        onChange={(e) => setForm({...form, email: e.target.value})}
                     />
 
-                    <label>New Password (optional)</label>
+                    <label>
+                        <MdPassword style={{marginRight: '4px', color: '#F048C6'}}/>
+                        New Password (optional)
+                    </label>
+
                     <input
                         type="password"
                         value={form.password}
-                        onChange={(e) => setForm({ ...form, password: e.target.value })}
+                        onChange={(e) => setForm({...form, password: e.target.value})}
                     />
 
-                    <button onClick={handleCredentialUpdate}>🔐 Update Credentials</button>
+                    <button onClick={handleCredentialUpdate}>
+                        <FaLock style={{marginRight: '6px'}}/>Update Credentials
+                    </button>
+
                 </div>
             </div>
         </div>

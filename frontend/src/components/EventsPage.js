@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
 import '../styles/event.css';
 import bannerImg from '../assets/bg-events.png';
+import { MdEvent } from 'react-icons/md';
 
 const EventsPage = () => {
     const [events, setEvents] = useState([]);
@@ -89,15 +90,30 @@ const EventsPage = () => {
         }
     };
 
+    const renderSparkleFlakes = () => {
+        const flakeCount = 12; // Number of sparkles
+        const flakes = [];
+        for (let i = 1; i <= flakeCount; i++) {
+            // Apply different classes for randomized properties defined in CSS
+            flakes.push(<div key={i} className={`sunburst-flake sunburst-flake-${i}`}></div>);
+        }
+        return flakes;
+    };
+
     return (
         <div className="dashboard">
             <div
                 className="full-bg-banner"
-                style={{ backgroundImage: `url(${bannerImg})` }}
+                style={{backgroundImage: `url(${bannerImg})`}}
             >
-                <div className="welcome-overlay">
-                    <h2>Upcoming Events</h2>
+                <div className="welcome-overlay-event">
+                    <h2>
+                        <MdEvent style={{ marginRight: '10px', verticalAlign: 'middle' }} />
+                        Upcoming Events</h2>
                     <p>Find events that interest you and join the fun!</p>
+                </div>
+                <div className="sparkle-container">
+                    {renderSparkleFlakes()}
                 </div>
             </div>
 

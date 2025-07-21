@@ -1,3 +1,4 @@
+/*CSS for Home Page + Dashbaord*/
 :root {
   --bg-light: #f5f7fb;
   --bg-white: #ffffff;
@@ -286,10 +287,25 @@ hr {
 }
 
 .welcome-overlay {
-  background-color: rgba(255, 255, 255, 0.7); /* soft white glow */
+  /*background-color: rgba(255, 255, 255, 0.7); !* soft white glow *!*/
+  /*background: linear-gradient(*/
+  /*        135deg,*/
+  /*        rgba(255, 255, 255, 0.4), !* Slightly more transparent white *!*/
+  /*        rgba(255, 255, 255, 255)  !* Even more transparent white *!*/
+  /*);*/
+  /*backdrop-filter: blur(4px); !* Optional frosted effect *!*/
+  background: rgba(173, 216, 230, 0.2); /* Very light, cool blue tint */
+  backdrop-filter: blur(10px) brightness(1.1); /* Slightly brighter frost */
+  border: 1px solid rgba(255, 255, 255, 0.4); /* Softer white border */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer shadow */
   padding: 1rem 2rem;
   border-radius: var(--border-radius);
-  backdrop-filter: blur(4px); /* Optional frosted effect */
+  height:100px;
+
+  /*New*/
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Stacks children (h2, p) vertically */
+  justify-content: center; /* Centers children along the main axis (vertical in this case) */
 }
 
 .welcome-overlay h2 {

@@ -36,3 +36,167 @@
     width: 100%;
     padding: 8px;
 }
+
+
+.welcome-overlay-mentor {
+    /* Background: Electric blue gradient with varying transparency */
+    background: linear-gradient(
+            135deg, /* Diagonal gradient direction */
+            rgba(138, 43, 226, 0.4), /* Starts with a slightly stronger, darker purple */
+            rgba(169, 112, 255, 0.2)  /* Ends with a lighter, more transparent purple */
+    );
+    /* Stronger blur, slight brightening of background elements through the blur */
+    backdrop-filter: blur(12px) brightness(1.2);
+    /* Matching electric blue border */
+    border: 1px solid rgba(167, 75, 255, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+
+    /* These lines are for centering and matching home.css layout, keep them! */
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* Default text color for overlay - will be overridden by h2/p for specific colors */
+    color: #1a1a1a;
+}
+.welcome-overlay-mentor h2 {
+    /* Match font-size and margin from home.css's .welcome-overlay h2 */
+    font-size: 1.5rem; /* Matches Home Dashboard h2 size */
+    margin: 0; /* Matches Home Dashboard h2 margin */
+
+    /* Custom color for Events banner h2 */
+    color: #f0f0f0; /* Light grey/white for visibility on dark banner */
+    /* text-shadow: 0 0 5px rgba(0,0,0,0.3); /* Optional: add a subtle shadow for better readability */
+}
+
+.welcome-overlay-mentor p {
+    /* Match font-size and margin from home.css's .welcome-overlay p */
+    font-size: 0.95rem; /* Matches Home Dashboard p size */
+    margin-top: 0.5rem; /* Matches Home Dashboard p margin */
+
+    /* Custom color for Events banner p */
+    color: #cccccc; /* Slightly darker light grey for p text */
+}
+
+/* Optional: Style for the sprout icon */
+.sprout-icon {
+    vertical-align: middle; /* Keeps icon aligned with text baseline */
+    margin-left: 0.5rem;
+    font-size: 1.1rem;
+    color: #90ee90; /* Green color */
+}
+
+
+/* NEW SVG EFFECT FOR MENTOR BANNER (assuming your .full-bg-banner is the parent) */
+.hexagon-flake {
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><path d='M50 0 L100 25 L100 75 L50 100 L0 75 L0 25 Z'/></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute; /* Position relative to .full-bg-banner */
+    bottom: -10px; /* Start just below the container */
+    opacity: 0; /* Start invisible */
+    width: 20px; /* Larger base size for hexagons */
+    height: 20px;
+    animation: floatUpAndFade 10s linear infinite; /* Adjust duration as needed */
+}
+
+/* Color tints for hexagon flakes */
+.hexagon-flake:nth-child(3n+1) {
+    filter: hue-rotate(270deg) drop-shadow(0 0 4px rgba(255, 0, 255, 0.6)); /* Magenta glow */
+}
+.hexagon-flake:nth-child(3n+2) {
+    filter: hue-rotate(290deg) drop-shadow(0 0 4px rgba(180, 0, 255, 0.7)); /* Purple glow */
+}
+.hexagon-flake:nth-child(3n+3) {
+    filter: hue-rotate(0deg) drop-shadow(0 0 4px rgba(255, 255, 255, 0.5)); /* White glow */
+}
+
+/* Randomize position, delay, and duration for variety */
+.hexagon-flake:nth-child(1)  { left: 8%;  animation-delay: 0s; animation-duration: 9s; }
+.hexagon-flake:nth-child(2)  { left: 18%; animation-delay: 1.5s; animation-duration: 11s; }
+.hexagon-flake:nth-child(3)  { left: 28%; animation-delay: 0.8s; animation-duration: 8.5s; }
+.hexagon-flake:nth-child(4)  { left: 38%; animation-delay: 2.2s; animation-duration: 10s; }
+.hexagon-flake:nth-child(5)  { left: 48%; animation-delay: 0.3s; animation-duration: 9.5s; }
+.hexagon-flake:nth-child(6)  { left: 58%; animation-delay: 2.8s; animation-duration: 11.5s; }
+.hexagon-flake:nth-child(7)  { left: 68%; animation-delay: 1.2s; animation-duration: 9.2s; }
+.hexagon-flake:nth-child(8)  { left: 78%; animation-delay: 3.5s; animation-duration: 10.8s; }
+.hexagon-flake:nth-child(9)  { left: 88%; animation-delay: 0.5s; animation-duration: 8s; }
+.hexagon-flake:nth-child(10) { left: 98%; animation-delay: 2s; animation-duration: 10.3s; }
+/* Add more as needed to fill the space */
+
+@keyframes floatUpAndFade {
+    0% {
+        bottom: -10px;
+        opacity: 0;
+        transform: translateX(0px) rotate(0deg) scale(0.6);
+    }
+    20% {
+        opacity: 0.5;
+    }
+    70% {
+        opacity: 0.5;
+    }
+    100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: translateX(0px) rotate(360deg) scale(0.9);
+    }
+
+
+}
+
+/* ====== Colorful Mentor Card Themes ====== */
+.mentor-card {
+    border-left: 5px solid transparent;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    color: #111827;
+    font-family: 'Inter', sans-serif; /* Or your preferred font */
+    font-size: 16px;
+    line-height: 1.5;
+}
+.mentor-card strong {
+    font-weight: 600; /* Use 600 instead of browser default bold */
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.mentor-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Theme variations */
+.mentor-card.blue {
+    background: linear-gradient(135deg, #dbeafe, #cffafe);
+    border-left: 5px solid #3b82f6;
+}
+
+.mentor-card.green {
+    background: linear-gradient(135deg, #dcfce7, #fef9c3);
+    border-left: 5px solid #22c55e;
+}
+
+.mentor-card.pink {
+    background: linear-gradient(135deg, #fce7f3, #ffe4e6);
+    border-left: 5px solid #ec4899;
+}
+
+.mentor-card.purple {
+    background: linear-gradient(135deg, #ede9fe, #e0f2fe);
+    border-left: 5px solid #8b5cf6;
+}
+
+.mentor-card.default {
+    background: linear-gradient(135deg, #f3f4f6, #fdf2f8);
+    border-left: 5px solid #9ca3af;
+}

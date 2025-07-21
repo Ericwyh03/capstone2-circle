@@ -53,3 +53,27 @@
 .sidebar.collapsed .toggle-btn {
     transform: rotate(180deg);
 }
+.icon {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+.function-button {
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    color: white;
+    border-radius: 8px;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    align-items: center;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.function-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 114, 255, 0.3);
+}

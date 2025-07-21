@@ -2,6 +2,7 @@
 import React from 'react';
 import rightbarImage from '../assets/rightbar.png';
 import useAuth from "../hooks/useAuth";
+import { FaComments, FaCalendarAlt, FaChalkboardTeacher } from 'react-icons/fa';
 
 function Dashboard() {
     const { user} = useAuth();
@@ -26,9 +27,18 @@ function Dashboard() {
 
             {/* 🔍 Quick tiles section */}
             <div className="quick-tiles">
-                <div className="tile">💬 Recent Match: Sarah</div>
-                <div className="tile">📅 Upcoming Event: Tech Talk</div>
-                <div className="tile">🧑‍🏫 Ongoing Mentorship</div>
+                <div className="tile">
+                    <FaComments style={{marginRight: '6px', color: '#9600FF'}}/>
+                    Recent Match: Sarah
+                </div>
+                <div className="tile">
+                    <FaCalendarAlt style={{marginRight: '6px', color: '#9600FF'}}/>
+                    Upcoming Event: Tech Talk
+                </div>
+                <div className="tile">
+                    <FaChalkboardTeacher style={{marginRight: '6px', color: '#9600FF' }}/>
+                    Ongoing Mentorship
+                </div>
             </div>
 
             {/* 📜 Activity Feed */}

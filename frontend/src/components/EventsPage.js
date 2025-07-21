@@ -200,16 +200,45 @@ const EventsPage = () => {
         }));
     };
 
+    // const handleCreate = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         await axios.post('/events', newEvent, {
+    //             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    //         });
+    //         setShowCreateForm(false);
+    //         setNewEvent({ name: '', description: '', start_time: '', end_time: '', location: '', color: 'blue', privacy: 'public' });
+    //         await fetchEvents();
+    //     } catch (err) {
+    //         alert('Failed to create event.');
+    //     }
+    // };
+
     const handleCreate = async (e) => {
         e.preventDefault();
         try {
             await axios.post('/events', newEvent, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
             });
+
+            // Reset form
+            setNewEvent({
+                name: '',
+                description: '',
+                start_time: '',
+                end_time: '',
+                location: '',
+                color: 'blue', // or default
+                privacy: 'public'
+            });
+
             setShowCreateForm(false);
-            setNewEvent({ name: '', description: '', start_time: '', end_time: '', location: '', color: 'blue', privacy: 'public' });
-            await fetchEvents();
+            await fetchEvents(); // refresh the list
+
         } catch (err) {
+            console.error('Event creation failed:', err);
             alert('Failed to create event.');
         }
     };

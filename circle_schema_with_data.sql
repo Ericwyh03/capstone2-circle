@@ -113,6 +113,22 @@ CREATE TABLE event_user (
                             CONSTRAINT fk_event_user_event FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE
 );
 
+CREATE TABLE mentors (
+                           `id` int(11) NOT NULL AUTO_INCREMENT,
+                           `user_id` int(11) NOT NULL,
+                           `institution_id` int(11) DEFAULT NULL,
+                           `club` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+                           `expertise` text COLLATE utf8mb4_general_ci DEFAULT NULL,
+                           `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+                           `updated_at` timestamp NULL DEFAULT NULL,
+                           PRIMARY KEY (`id`),
+                           KEY `user_id` (`user_id`),
+                           KEY `fk_mentors_institution` (`institution_id`),
+                           CONSTRAINT `mentors_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+                           CONSTRAINT `fk_mentors_institution` FOREIGN KEY (`institution_id`) REFERENCES `institutions` (`id`) ON DELETE SET NULL
+)
+
+
 
 -- Insert interests
 INSERT INTO interests (name) VALUES ('Anime');
@@ -443,3 +459,9 @@ INSERT INTO events (
              NOW(),
              NOW()
          );
+
+-- Insert sample mentor data (users with IDs 4 and 5)
+INSERT INTO mentors (user_id, institution, club, expertise)
+VALUES
+    (4, 'University of Example', 'Coding Club', 'Web Development, React, Laravel'),
+    (5, 'Tech State College', 'AI Society', 'Machine Learning, Python, Data Analysis');

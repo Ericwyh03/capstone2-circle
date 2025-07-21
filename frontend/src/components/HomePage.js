@@ -3,7 +3,7 @@ import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
 import Matchmaking from './Matchmaking';
 import EventsPage from './EventsPage';
-import Mentorship from './Mentorship';
+import MentorshipPage from './MentorshipPage';
 import ProfilePage from './ProfilePage';
 import HeaderBar from './HeaderBar';
 import '../styles/home.css';
@@ -21,11 +21,12 @@ function HomePage() {
         switch (activeView) {
             case 'matchmaking': return <Matchmaking />;
             case 'events': return <EventsPage />;
-            case 'mentorship': return <Mentorship />;
+            case 'mentor': return <MentorshipPage />;
             case 'profile': return <ProfilePage />;
             case 'matchRequests':return <MatchRequests />;
             case 'messages':return <Messages />;
             case 'friends': return <Friends />;
+
 
             default: return <Dashboard />;
 

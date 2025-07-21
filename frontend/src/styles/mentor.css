@@ -1,0 +1,38 @@
+.mentor-list {
+    padding: 20px;
+}
+
+.mentor-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.mentor-card {
+    background: #fefefe;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    font-size: 14px;
+}
+
+.mentor-card h3 {
+    margin-bottom: 6px;
+    font-size: 18px;
+}
+
+.mentor-card p {
+    margin: 4px 0;
+}
+
+.mentor-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.mentor-select {
+    width: 100%;
+    padding: 8px;
+}

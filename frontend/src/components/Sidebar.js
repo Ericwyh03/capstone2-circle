@@ -42,18 +42,18 @@ function Sidebar({ isOpen, onToggle, setView }) {
                     <hr />
                     <div className="main-buttons">
                         <button onClick={() => setView('matchmaking')}>
-                            <FaSearch style={{ marginRight: '6px' }} /> Matchmaking
+                            <FaSearch style={{marginRight: '6px'}}/> Matchmaking
                         </button>
                         <button onClick={() => setView('events')}>
-                            <FaCalendarAlt style={{ marginRight: '6px' }} /> Events
+                            <FaCalendarAlt style={{marginRight: '6px'}}/> Events
                         </button>
-                        <button onClick={() => setView('mentorship')}>
-                            <FaChalkboardTeacher style={{ marginRight: '6px' }} /> Mentorship
+                        <button onClick={() => setView('mentor')}>
+                            <FaChalkboardTeacher style={{marginRight: '6px'}}/> Mentorship
                         </button>
                     </div>
-                    <hr />
+                    <hr/>
                     <div className="quick-stats">
-                        <p><FaUserFriends style={{ marginRight: '6px' }} />Connections: 21</p>
+                        <p><FaUserFriends style={{marginRight: '6px'}}/>Connections: 21</p>
                         <p><FaCalendarAlt style={{ marginRight: '6px' }} />Events Joined: 5</p>
                         <p><FaChalkboardTeacher style={{ marginRight: '6px' }} />Mentorships: 3</p>
                     </div>

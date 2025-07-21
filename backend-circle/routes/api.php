@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\API\InstitutionController;
 use App\Http\Controllers\API\MatchController;
 use App\Http\Controllers\API\MatchRequestController;
+use App\Http\Controllers\API\MentorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\API\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -39,5 +40,12 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/events', [EventController::class, 'index']);
     Route::post('/events/{event}/join', [EventController::class, 'join']);
     Route::get('/myevents', [EventController::class, 'myEvents']);
+
+    //Main Function 3 - Mentor
+    Route::post('/mentors', [MentorController::class, 'store']);
+    Route::get('/mentors', [MentorController::class, 'index']);
+    Route::get('/mentors/{id}', [MentorController::class, 'show']);
+    Route::get('/mentor-institutions', [MentorController::class, 'getInstitutions']);
+
 
 });

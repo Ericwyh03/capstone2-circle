@@ -4,8 +4,8 @@ import '../styles/home.css';
 function HeaderBar({ setActiveView }) {
     return (
         <div className="header-bar">
-            <div className="header-left">
-                <img src="/logo192.png" alt="Logo" className="header-logo" />
+            <div className="header-left" onClick={() => setActiveView('Dashboard')} style={{cursor: 'pointer'}}>
+                <img src="/logo192.png" alt="Logo" className="header-logo"/>
                 <span className="site-name">Circle</span>
             </div>
             <div className="header-right">

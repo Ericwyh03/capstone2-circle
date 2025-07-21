@@ -8,8 +8,11 @@ import ProfilePage from './ProfilePage';
 import HeaderBar from './HeaderBar';
 import '../styles/home.css';
 import MatchRequests from "./MatchRequest";
+import MentorRequests from "./MentorRequest";
 import Messages from "./Messages";
 import Friends from "./Friends";
+import MentorConnections from "./MentorConnection";
+import MentorConnection from "./MentorConnection";
 
 function HomePage() {
     const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -24,8 +27,10 @@ function HomePage() {
             case 'mentor': return <MentorshipPage />;
             case 'profile': return <ProfilePage />;
             case 'matchRequests':return <MatchRequests />;
+            case 'mentorRequests':return <MentorRequests />;
             case 'messages':return <Messages />;
             case 'friends': return <Friends />;
+            case 'mentoring': return <MentorConnection />;
 
 
             default: return <Dashboard />;

@@ -11,6 +11,8 @@ DROP TABLE IF EXISTS connections;
 DROP TABLE IF EXISTS user_interests;
 DROP TABLE IF EXISTS match_requests;
 DROP TABLE IF EXISTS event_user;
+DROP TABLE IF EXISTS mentors;
+DROP TABLE IF EXISTS mentor_request;
 
 CREATE TABLE institutions (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -128,6 +130,16 @@ CREATE TABLE mentors (
                            CONSTRAINT `fk_mentors_institution` FOREIGN KEY (`institution_id`) REFERENCES `institutions` (`id`) ON DELETE SET NULL
 )
 
+CREATE TABLE mentor_requests (
+                                 id INT AUTO_INCREMENT PRIMARY KEY,
+                                 mentee_id INT NOT NULL,
+                                 mentor_id INT NOT NULL,
+                                 status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
+                                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                 updated_at TIMESTAMP NULL DEFAULT NULL,
+                                 FOREIGN KEY (mentee_id) REFERENCES users(id) ON DELETE CASCADE,
+                                 FOREIGN KEY (mentor_id) REFERENCES users(id) ON DELETE CASCADE
+);
 
 
 -- Insert interests
@@ -465,3 +477,7 @@ INSERT INTO mentors (user_id, institution, club, expertise)
 VALUES
     (4, 'University of Example', 'Coding Club', 'Web Development, React, Laravel'),
     (5, 'Tech State College', 'AI Society', 'Machine Learning, Python, Data Analysis');
+
+INSERT INTO mentor_requests (mentee_id, mentor_id, status, created_at, updated_at)
+VALUES
+    (6, 1, 'pending', NOW(), NOW());

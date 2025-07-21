@@ -5,6 +5,7 @@ use App\Http\Controllers\API\InstitutionController;
 use App\Http\Controllers\API\MatchController;
 use App\Http\Controllers\API\MatchRequestController;
 use App\Http\Controllers\API\MentorController;
+use App\Http\Controllers\API\MentorRequestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\API\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,13 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/mentors', [MentorController::class, 'index']);
     Route::get('/mentors/{id}', [MentorController::class, 'show']);
     Route::get('/mentor-institutions', [MentorController::class, 'getInstitutions']);
+
+    //Main Function 3 - Extended (Requests Section)
+    Route::post('/mentor-request/sendRequest', [MentorRequestController::class, 'sendRequest']);
+    Route::get('/mentor-requests/incomingRequests', [MentorRequestController::class, 'incomingRequests']);
+    Route::post('/mentor-request/respond', [MentorRequestController::class, 'respond']);
+    Route::get('/mentor-requests/mentorshipConnections', [MentorRequestController::class, 'mentorshipConnections']);
+
 
 
 });

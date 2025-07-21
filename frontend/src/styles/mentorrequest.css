@@ -1,0 +1,58 @@
+.mentor-requests-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mentor-request-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mentor-request-details {
+    flex-grow: 1;
+}
+
+.mentor-request-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.mentor-accept-btn,
+.mentor-reject-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mentor-accept-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.mentor-accept-btn:hover {
+    background-color: #45a049;
+}
+
+.mentor-reject-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.mentor-reject-btn:hover {
+    background-color: #d32f2f;
+}

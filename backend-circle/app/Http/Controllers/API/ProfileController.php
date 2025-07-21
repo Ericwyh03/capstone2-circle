@@ -3,19 +3,24 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Event;
+use App\Models\MatchRequest;
 use App\Models\User;
 use App\Models\Connection;
 use App\Models\UserEvent;
 use App\Models\Mentorship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function getProfile()
+    public function getProfile(Request $request)
     {
+        // ✅ Get authenticated user ID
+        $userId = $request->user()->id;
         $user = Auth::guard('api')->user();
 
         if (!$user) {
@@ -25,13 +30,18 @@ class ProfileController extends Controller
         // Load related institution if not already loaded
         $user->load('institution');
 
-        // Count accepted matches
-        $connections = \DB::table('matches')
-            ->where(function ($query) use ($user) {
-                $query->where('user_id_1', $user->id)
-                    ->orWhere('user_id_2', $user->id);
-            })
-            ->where('status', 'accepted') // only count accepted connections
+        // Mutually accepted match requests (regardless of who sent)
+        $connections = MatchRequest::where(function ($query) use ($userId) {
+            $query->where('sender_id', $userId)
+                ->orWhere('receiver_id', $userId);
+        })
+            ->where('status', 'accepted')
+            ->count();
+
+        $createdEvents = Event::where('creator_id', $user->id)->count();
+
+        $joinedEvents = DB::table('event_user')
+            ->where('user_id', $user->id)
             ->count();
 
         return response()->json([
@@ -43,7 +53,7 @@ class ProfileController extends Controller
             'institution_id' => $user->institution_id,
             'stats' => [
                 'connections' => $connections,
-                'events' => 0,        // hardcoded until events table exists
+                'events' => $createdEvents + $joinedEvents,
                 'mentorships' => 0,   // hardcoded until mentorships table exists
             ],
         ]);

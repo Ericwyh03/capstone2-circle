@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import '../styles/profilepage.css';
 import useAuth from '../hooks/useAuth';
 import api from '../api/axios';
-import { FaUserFriends, FaCalendarAlt, FaGraduationCap, FaChartBar, FaSave, FaLock, FaPen } from 'react-icons/fa';
-import { MdOutlineEmail, MdPassword } from 'react-icons/md';
-import { HiOutlineUserCircle } from 'react-icons/hi';
-
 
 const ProfilePage = () => {
     const { user } = useAuth();
@@ -85,9 +81,7 @@ const ProfilePage = () => {
     return (
         <div className="profile-container">
             <div className="profile-header">
-                <h2><HiOutlineUserCircle
-                    style={{verticalAlign: 'middle', marginRight: '8px'}}/>Welcome, {profileData.name}</h2>
-
+                <h2>👋 Welcome, {profileData.name}</h2>
                 <p>Email: {profileData.email}</p>
             </div>
 
@@ -101,11 +95,10 @@ const ProfilePage = () => {
                 </div>
 
                 <div className="profile-section stat-box">
-                    <h3><FaChartBar style={{verticalAlign: 'middle', marginRight: '6px'}}/> Quick Stats</h3>
-                    <p><FaUserFriends style={{marginRight: '6px'}}/>Connections: {profileData.stats?.connections}</p>
-                    <p><FaCalendarAlt style={{marginRight: '6px'}}/>Events Joined: {profileData.stats?.events}</p>
-                    <p><FaGraduationCap style={{marginRight: '6px'}}/>Mentorships: {profileData.stats?.mentorships}</p>
-
+                    <h3>📊 Quick Stats</h3>
+                    <p>🧑‍🤝‍🧑 Connections: {profileData.stats?.connections}</p>
+                    <p>📅 Events Joined: {profileData.stats?.events}</p>
+                    <p>🎓 Mentorships: {profileData.stats?.mentorships}</p>
                 </div>
             </div>
 

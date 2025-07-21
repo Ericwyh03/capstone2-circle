@@ -22,16 +22,34 @@
 }
 
 .match-card {
-    background: rgba(255, 255, 255, 0.75);
+    background: linear-gradient(135deg, #e0c3fc, #8ec5fc); /* fresh violet-blue gradient */
+    color: #fff;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(6px);
+}
+.match-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+}
+.match-card.gradient-1 {
+    background: linear-gradient(135deg, #f6d365, #fda085); /* peach */
+}
+.match-card.gradient-2 {
+    background: linear-gradient(135deg, #a1c4fd, #d7e1ed); /* sky */
+}
+.match-card.gradient-3 {
+    background: linear-gradient(135deg, #fccb90, #d57eeb); /* pink-violet */
+}
+.match-card.gradient-4 {
+    background: linear-gradient(135deg, #ffecd2, #fcb69f); /* apricot */
+}
+.match-card.gradient-5 {
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee); /* lavender */
 }
 
-.match-card:hover {
-    transform: translateY(-4px);
-}
 
 .match-name {
     font-weight: 600;
@@ -42,7 +60,7 @@
 
 .match-meta {
     font-size: 0.9rem;
-    color: #888;
+    color: #ffffffff;
     margin-bottom: 10px;
 }
 
@@ -83,15 +101,18 @@
 }
 .match-button {
     margin-top: 10px;
-    padding: 8px 14px;
-    background-color: #4CAF50;
+    background: rgba(255, 255, 255, 0.2);
     color: white;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
+    backdrop-filter: blur(5px);
+    transition: background 0.3s ease;
 }
 
 .match-button:hover {
-    background-color: #45a049;
+    background: rgba(255, 255, 255, 0.3);
 }
+
+

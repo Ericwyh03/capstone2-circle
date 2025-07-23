@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
 import '../styles/mentor.css';
 import bannerImg from '../assets/bg-mentor.png';
-import { FaUserPlus } from 'react-icons/fa';
-import { MdClose } from 'react-icons/md';
+import { FaUserPlus, FaCheck, FaLightbulb } from 'react-icons/fa';
+import { MdClose, MdSchool } from 'react-icons/md';
+import { BiSolidUserVoice } from 'react-icons/bi';
 
 const MentorshipPage = () => {
     const [mentors, setMentors] = useState([]);
@@ -98,10 +99,10 @@ const MentorshipPage = () => {
 
             {showForm && (
                 <form className="create-event-form" onSubmit={handleSubmit}>
-                    <h3 className="form-title">🙋 Volunteer as Mentor</h3>
+                    <h3 className="form-title"><BiSolidUserVoice style={{ verticalAlign: 'middle', marginRight: '6px' }} /> Volunteer as Mentor</h3>
 
                     <div className="form-group">
-                        <label>🎓 Club Affiliation (optional)</label>
+                        <label> <MdSchool style={{ verticalAlign: 'middle', marginRight: '6px' }} /> Club Affiliation (optional)</label>
                         <input
                             type="text"
                             name="club"
@@ -112,7 +113,7 @@ const MentorshipPage = () => {
                     </div>
 
                     <div className="form-group">
-                        <label>💡 Mentoring Topics</label>
+                        <label> <FaLightbulb style={{ verticalAlign: 'middle', marginRight: '6px' }} /> Mentoring Topics</label>
                         <textarea
                             name="mentoring_areas"
                             value={formData.mentoring_areas}
@@ -123,7 +124,7 @@ const MentorshipPage = () => {
                         />
                     </div>
 
-                    <button className="submit-btn" type="submit">✅ Submit</button>
+                    <button className="submit-btn" type="submit"><FaCheck style={{ verticalAlign: 'middle', marginRight: '6px' }} /> Submit</button>
                 </form>
             )}
 

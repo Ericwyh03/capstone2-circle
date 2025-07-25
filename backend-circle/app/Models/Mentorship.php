@@ -15,5 +15,4 @@ class Mentorship extends Model
         'status'
     ];
 
-    // Optional: You can add relationships later if needed
 }

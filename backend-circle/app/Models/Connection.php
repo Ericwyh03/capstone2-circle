@@ -15,7 +15,6 @@ class Connection extends Model
         'status',
     ];
 
-    // Optional: relationship example if you want later
     public function user1()
     {
         return $this->belongsTo(User::class, 'user_id_1');

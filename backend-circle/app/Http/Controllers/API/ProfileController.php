@@ -19,7 +19,7 @@ class ProfileController extends Controller
 {
     public function getProfile(Request $request)
     {
-        // ✅ Get authenticated user ID
+        // Get authenticated user ID
         $userId = $request->user()->id;
         $user = Auth::guard('api')->user();
 

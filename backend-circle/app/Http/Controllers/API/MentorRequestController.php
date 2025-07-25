@@ -37,7 +37,7 @@ class MentorRequestController extends Controller
         // Load mentee and their institution
         $requests = MentorRequest::where('mentor_id', $mentor->id)
             ->where('status', 'pending')
-            ->with(['mentee.institution']) // Eager loading
+            ->with(['mentee.institution'])
             ->get();
 
         return response()->json($requests);

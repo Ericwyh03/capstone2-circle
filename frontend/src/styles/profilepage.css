@@ -40,11 +40,6 @@
     min-width: 300px;
 }
 
-/*.profile-info-card*/
-/*{*/
-/*    background: linear-gradient(135deg, #F6EA41, #F048C6);*/
-/*    color: #fff;*/
-/*}*/
 .profile-info-card {
     background: linear-gradient(135deg, #f2d94e, #d8389e); /* softer blend */
     color: #fff;
@@ -78,21 +73,6 @@
 
 }
 
-
-/*.profile-section input:focus,*/
-/*.profile-section textarea:focus,*/
-/*.profile-section select:focus {*/
-/*    outline: none;*/
-/*    border: 1px solid transparent;*/
-/*    background-origin: border-box;*/
-/*    background-clip: padding-box, border-box;*/
-/*    background-image:*/
-/*            linear-gradient(#fff, #fff),*/
-/*            linear-gradient(135deg, #ff7eb9, #ff758c); !* pink-red gradient *!*/
-/*    box-shadow: 0 0 6px rgba(255, 117, 140, 0.3);*/
-/*    transition: all 0.3s ease;*/
-/*}*/
-
 .profile-section input:focus,
 .profile-section textarea:focus,
 .profile-section select:focus {
@@ -106,14 +86,6 @@
     box-shadow: 0 0 6px rgba(159, 159, 237, 0.3);
     transition: all 0.3s ease;
 }
-
-/*.profile-section input:focus,*/
-/*.profile-section textarea:focus,*/
-/*.profile-section select:focus {*/
-/*    outline: none;*/
-/*    border-color: #4f88ff;*/
-/*    box-shadow: 0 0 5px rgba(79, 136, 255, 0.3);*/
-/*}*/
 
 .profile-section:hover {
     transform: translateY(-2px);
@@ -143,15 +115,6 @@
     font-size: 24px;
 }
 
-/*.stat-box {*/
-/*    background: linear-gradient(135deg, #9600FF, #AEBAF8);*/
-/*    color: #fff;*/
-/*    padding: 20px;*/
-/*    border-radius: 12px;*/
-/*    box-shadow: 0 2px 6px rgba(0,0,0,0.05);*/
-/*    text-align: center;*/
-/*    flex: 1 1 30%;*/
-/*}*/
 .stat-box {
     background: linear-gradient(135deg, #7a00cc, #9eaddf); /* softened */
     color: #fff;

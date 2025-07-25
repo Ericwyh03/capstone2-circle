@@ -17,48 +17,19 @@
     overflow: hidden;
 }
 
-/*.welcome-overlay-event {*/
-/*    !* Background and border specific to Events banner *!*/
-/*    background: linear-gradient(*/
-/*            135deg,*/
-/*            rgba(255, 255, 255, 0.2), !* Adjusted for subtlety *!*/
-/*            rgba(255, 255, 255, 0.1) !* Adjusted for subtlety *!*/
-/*    );*/
-/*    backdrop-filter: blur(10px);*/
-/*    border: 1px solid rgba(255, 255, 255, 0.4); !* Softer white border *!*/
-/*    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);*/
-/*    transition: all 0.3s ease;*/
-/*    position: relative;*/
-/*    z-index: 2;*/
-
-/*    !* Matching text sizing and spacing from home.css's .welcome-overlay *!*/
-/*    padding: 1rem 2rem; !* Keep padding consistent *!*/
-/*    border-radius: var(--border-radius); !* Use global variable if defined, otherwise 12px *!*/
-/*    height: 100px; !* Keep height consistent *!*/
-/*    display: flex; !* Ensure flex for vertical centering *!*/
-/*    flex-direction: column;*/
-/*    justify-content: center; !* Vertically center content *!*/
-
-/*    !* Default text color for the overlay, will be overridden by h2/p *!*/
-/*    color: #333; !* Good default, matches home.css's .welcome-overlay *!*/
-/*}*/
 .welcome-overlay-event {
-    /* Background: Electric blue gradient with varying transparency */
     background: linear-gradient(
-            135deg, /* Diagonal gradient direction */
-            rgba(0, 204, 255, 0.4), /* Start with a more opaque electric blue */
-            rgba(0, 153, 255, 0.2)  /* End with a slightly deeper, more transparent blue */
+            135deg,
+            rgba(0, 204, 255, 0.4),
+            rgba(0, 153, 255, 0.2)
     );
-    /* Stronger blur, slight brightening of background elements through the blur */
     backdrop-filter: blur(12px) brightness(1.2);
-    /* Matching electric blue border */
     border: 1px solid rgba(0, 204, 255, 0.5);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     position: relative;
     z-index: 2;
 
-    /* These lines are for centering and matching home.css layout, keep them! */
     padding: 1rem 2rem;
     border-radius: var(--border-radius);
     height: 100px;
@@ -66,26 +37,21 @@
     flex-direction: column;
     justify-content: center;
 
-    /* Default text color for overlay - will be overridden by h2/p for specific colors */
     color: #1a1a1a;
 }
 .welcome-overlay-event h2 {
-    /* Match font-size and margin from home.css's .welcome-overlay h2 */
-    font-size: 1.5rem; /* Matches Home Dashboard h2 size */
-    margin: 0; /* Matches Home Dashboard h2 margin */
+    font-size: 1.5rem;
+    margin: 0;
 
     /* Custom color for Events banner h2 */
-    color: #f0f0f0; /* Light grey/white for visibility on dark banner */
-    /* text-shadow: 0 0 5px rgba(0,0,0,0.3); /* Optional: add a subtle shadow for better readability */
+    color: #f0f0f0;
 }
 
 .welcome-overlay-event p {
-    /* Match font-size and margin from home.css's .welcome-overlay p */
-    font-size: 0.95rem; /* Matches Home Dashboard p size */
-    margin-top: 0.5rem; /* Matches Home Dashboard p margin */
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
 
-    /* Custom color for Events banner p */
-    color: #cccccc; /* Slightly darker light grey for p text */
+    color: #cccccc;
 }
 
 .event-list {
@@ -101,16 +67,6 @@
     padding: 2rem;
 }
 
-/*.event-card {*/
-/*    backdrop-filter: blur(10px);*/
-/*    background: rgba(255, 255, 255, 0.1);*/
-/*    border-radius: 20px;*/
-/*    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);*/
-/*    padding: 1.5rem;*/
-/*    color: #fff;*/
-/*    transition: transform 0.3s ease, box-shadow 0.3s ease;*/
-/*    border: 1px solid rgba(255, 255, 255, 0.2);*/
-/*}*/
 
 .event-card:hover {
     transform: translateY(-5px);
@@ -158,7 +114,6 @@
     color: white;
 }
 
-/*Trying New Multiple Colour Cards*/
 .event-card {
     border-left: 5px solid transparent;
     padding: 1rem;
@@ -166,7 +121,7 @@
     border-radius: 12px;
     backdrop-filter: blur(8px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-    color: #111827; /* neutral dark for contrast */
+    color: #111827;
     transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
@@ -243,7 +198,7 @@
     font-size: 1.6rem;
     margin-bottom: 16px;
     text-align: center;
-    color: #111; /* Darker heading */
+    color: #111;
 }
 
 .form-group {
@@ -255,7 +210,7 @@
 .form-group label {
     margin-bottom: 8px;
     font-weight: 500;
-    color: #333; /* Darker label */
+    color: #333;
 }
 
 .form-group input,
@@ -324,33 +279,25 @@
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    bottom: -10px; /* Start just below the container */
-    opacity: 0; /* Start invisible */
+    bottom: -10px;
+    opacity: 0;
 
-    /* Subtler default size */
     width: 14px;
     height: 14px;
-
-    /* Base animation, will be overridden by nth-child */
     animation: floatUpAndTwinkle 8s linear infinite; /* Increased duration for slower movement */
 }
 
-/* Color tints for variety, similar to previous but with slightly reduced glow */
 .sunburst-flake:nth-child(3n+1) {
-    /* White sparkle */
     filter: hue-rotate(0deg) drop-shadow(0 0 3px rgba(255, 255, 255, 0.7));
 }
 .sunburst-flake:nth-child(3n+2) {
-    /* Electric Blue/Cyan sparkle */
     filter: hue-rotate(180deg) drop-shadow(0 0 3px rgba(0, 255, 255, 0.6));
 }
 .sunburst-flake:nth-child(3n+3) {
-    /* Vibrant Purple/Magenta sparkle */
     filter: hue-rotate(280deg) drop-shadow(0 0 3px rgba(255, 0, 255, 0.5));
 }
 
 /* Randomized position, delay, and now *duration* for more varied movement */
-/* Note: You might need to add `animation-duration` to the individual flakes for more variation */
 .sunburst-flake:nth-child(1)  { left: 5%;  animation-delay: 0s; animation-duration: 7s; }
 .sunburst-flake:nth-child(2)  { left: 15%; animation-delay: 1.5s; animation-duration: 9s; }
 .sunburst-flake:nth-child(3)  { left: 25%; animation-delay: 0.8s; animation-duration: 6.5s; }
@@ -367,23 +314,23 @@
 
 @keyframes floatUpAndTwinkle {
     0% {
-        bottom: -10px; /* Start slightly below */
+        bottom: -10px;
         opacity: 0;
-        transform: translateX(0px) rotate(0deg) scale(0.6); /* Reduced translateX */
+        transform: translateX(0px) rotate(0deg) scale(0.6);
     }
     10% {
-        opacity: 0.3; /* Max opacity is lower */
+        opacity: 0.3;
     }
     50% {
-        opacity: 0.6; /* Mid-point max opacity, less dominant */
-        transform: translateX(5px) rotate(180deg) scale(0.9); /* Reduced translateX */
+        opacity: 0.6;
+        transform: translateX(5px) rotate(180deg) scale(0.9);
     }
     90% {
-        opacity: 0.1; /* Fade out more */
+        opacity: 0.1;
     }
     100% {
-        bottom: 100%; /* Float to the top of the container */
-        opacity: 0; /* Fully fade out */
-        transform: translateX(-5px) rotate(360deg) scale(0.6); /* Reduced translateX */
+        bottom: 100%;
+        opacity: 0;
+        transform: translateX(-5px) rotate(360deg) scale(0.6);
     }
 }

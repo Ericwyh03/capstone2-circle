@@ -57,7 +57,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(MatchRequest::class, 'sender_id');
     }
 
-// Users who sent requests to me
+    // Users who sent requests to me
     public function receivedMatchRequests()
     {
         return $this->hasMany(MatchRequest::class, 'receiver_id');

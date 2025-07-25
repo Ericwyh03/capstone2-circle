@@ -14,5 +14,5 @@ class UserEvent extends Model
         'event_id',
     ];
 
-    // Optional: Add relationships later if needed
+
 }

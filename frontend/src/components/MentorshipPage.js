@@ -44,6 +44,16 @@ const MentorshipPage = () => {
             alert(err.response?.data?.message || "Failed to volunteer.");
         }
     };
+    const handleSendMentorRequest = async (mentorId) => {
+        try {
+            await axios.post('/mentor-request/sendRequest', { mentor_id: mentorId }, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            });
+            alert('Mentor request sent!');
+        } catch (err) {
+            alert(err.response?.data?.message || 'Failed to send mentor request.');
+        }
+    };
 
     const colors = ['blue', 'green', 'pink', 'purple', 'default'];
 
@@ -129,10 +139,17 @@ const MentorshipPage = () => {
                                 <p><strong>Institution:</strong> {mentor.institution?.name || 'No institution'}</p>
                                 <p><strong>Club:</strong> {mentor.club?.name || 'No club'}</p>
 
-                                {/* Only show line if it's not the last card */}
-                                {index !== mentors.length - 1 && <hr/>}
+                                <button
+                                    className="mentor-button"
+                                    onClick={() => handleSendMentorRequest(mentor.id)}
+                                >
+                                    Request Mentor
+                                </button>
+
+                                {index !== mentors.length - 1 && <hr />}
                             </div>
                         ))}
+
                     </div>
                 )}
             </div>

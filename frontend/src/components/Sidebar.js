@@ -42,7 +42,7 @@ function Sidebar({ isOpen, onToggle, setView }) {
                     <hr />
                     <div className="main-buttons">
                         <button onClick={() => setView('matchmaking')}>
-                            <FaSearch style={{marginRight: '6px'}}/> Matchmaking
+                            <FaSearch style={{marginRight: '6px'}}/> Matching
                         </button>
                         <button onClick={() => setView('events')}>
                             <FaCalendarAlt style={{marginRight: '6px'}}/> Events

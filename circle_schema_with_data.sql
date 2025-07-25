@@ -1,10 +1,9 @@
 -- Drop existing tables
 DROP TABLE IF EXISTS matches;
-DROP TABLE IF EXISTS user_interests;
 DROP TABLE IF EXISTS interests;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS institutions;
-DROP TABLE IF EXISTS events
+DROP TABLE IF EXISTS events;
 DROP TABLE IF EXISTS user_events;
 DROP TABLE IF EXISTS mentorships;
 DROP TABLE IF EXISTS connections;
@@ -33,6 +32,31 @@ CREATE TABLE users (
   updated_at TIMESTAMP NULL DEFAULT NULL,
   FOREIGN KEY (institution_id) REFERENCES institutions(id)
 );
+
+INSERT INTO institutions (name, location) VALUES
+                                              ('Sunway University', 'Malaysia'),
+                                              ('University of Malaya', 'Malaysia'),
+                                              ('Taylor''s University', 'Malaysia'),
+                                              ('Multimedia University', 'Malaysia'),
+                                              ('INTI International University', 'Malaysia');
+
+-- Insert 5 users
+INSERT INTO users (name, email, password, profile_image, institution_id, bio) VALUES
+                                                                                  ('Alice Tan', 'usertest1@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Loves reading and meeting new people.'),
+                                                                                  ('Brian Lee', 'usertest2@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Coder by day, gamer by night.'),
+                                                                                  ('Carmen Low', 'usertest3@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Passionate about photography and coffee.'),
+                                                                                  ('Daniel Wong', 'usertest4@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Enjoys hiking and tech meetups.'),
+                                                                                  ('Evelyn Chua', 'usertest5@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Quiet but curious about everything.'),
+                                                                                  ('Farah Lim', 'usertest6@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Baking enthusiast and aspiring entrepreneur.'),
+                                                                                  ('Gary Ng', 'usertest7@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Speedrunner and esports junkie.'),
+                                                                                  ('Hui Min', 'usertest8@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Loves art, calligraphy, and cozy cafes.'),
+                                                                                  ('Irfan Shah', 'usertest9@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Into fitness, football, and street photography.'),
+                                                                                  ('Jia Wei', 'usertest10@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Enjoys philosophy, journaling, and coding.'),
+                                                                                  ('Kavita Menon', 'usertest11@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Tea drinker and wildlife documentary nerd.'),
+                                                                                  ('Leon Tan', 'usertest12@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Into AI, 3D modeling, and PC building.'),
+                                                                                  ('Michelle Ong', 'usertest13@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Blogging about fashion, skincare, and cats.'),
+                                                                                  ('Nicholas Yap', 'usertest14@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Coffee lover who builds apps for fun.'),
+                                                                                  ('Ong Mei Ling', 'usertest15@gmail.com', '$2y$12$9yRhLJmKVZgalChTtDJ1jerLGepLXH/ky6tAKAjqIpYI.9toYOHp.', 'default.png', 1, 'Dancer, yogi, and dog mom.');
 
 
 CREATE TABLE interests (
@@ -70,7 +94,7 @@ CREATE TABLE events (
                         end_time DATETIME NULL,
                         location VARCHAR(255) NOT NULL,
                         privacy ENUM('public', 'friends', 'private') DEFAULT 'public',
-                        color ENUM('blue', 'green', 'pink', 'purple', 'grey') DEFAULT 'blue';
+                        color ENUM('blue', 'green', 'pink', 'purple', 'grey') DEFAULT 'blue',
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -78,11 +102,12 @@ CREATE TABLE events (
 
 CREATE TABLE user_events (
                              user_id INT,
-                             event_id INT,
+                             event_id BIGINT UNSIGNED,
                              PRIMARY KEY (user_id, event_id),
                              FOREIGN KEY (user_id) REFERENCES users(id),
                              FOREIGN KEY (event_id) REFERENCES events(id)
 );
+
 
 CREATE TABLE mentorships (
                              id INT AUTO_INCREMENT PRIMARY KEY,
@@ -106,14 +131,15 @@ CREATE TABLE connections (
 CREATE TABLE event_user (
                             id INT(11) AUTO_INCREMENT PRIMARY KEY,
                             user_id INT(11) NOT NULL,
-                            event_id INT(11) NOT NULL,
+                            event_id BIGINT UNSIGNED NOT NULL,
                             joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                            ADD COLUMN created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-                            ADD COLUMN updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+                            created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+                            updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
                             CONSTRAINT fk_event_user_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
                             CONSTRAINT fk_event_user_event FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE
 );
+
 
 CREATE TABLE mentors (
                            `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -128,7 +154,7 @@ CREATE TABLE mentors (
                            KEY `fk_mentors_institution` (`institution_id`),
                            CONSTRAINT `mentors_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
                            CONSTRAINT `fk_mentors_institution` FOREIGN KEY (`institution_id`) REFERENCES `institutions` (`id`) ON DELETE SET NULL
-)
+);
 
 CREATE TABLE mentor_requests (
                                  id INT AUTO_INCREMENT PRIMARY KEY,
@@ -242,8 +268,7 @@ INSERT INTO interests (name) VALUES ('Tea');
 INSERT INTO interests (name) VALUES ('Coffee');
 INSERT INTO interests (name) VALUES ('Martial Arts');
 INSERT INTO interests (name) VALUES ('Parkour');
--- Insert a sample institution
-INSERT INTO institutions (name, location) VALUES ('Sunway University', 'Malaysia');
+
 
 -- Assign interests to users
 INSERT INTO user_interests (user_id, interest_id) VALUES (1, 73);
@@ -364,20 +389,9 @@ INSERT INTO user_interests (user_id, interest_id) VALUES (15, 70);
 INSERT INTO user_interests (user_id, interest_id) VALUES (15, 66);
 
 -- Make sure institution with ID 1 exists
-INSERT INTO institutions (name, location) VALUES
-('Sunway University', 'Malaysia'),
-('University of Malaya', 'Malaysia'),
-('Taylor''s University', 'Malaysia'),
-('Multimedia University', 'Malaysia'),
-('INTI International University', 'Malaysia');
 
--- Insert 5 users
-INSERT INTO users (name, email, password, profile_image, institution_id, bio) VALUES
-('Alice Tan', 'usertest1@gmail.com', 'abc123', 'default.png', 1, 'Loves reading and meeting new people.'),
-('Brian Lee', 'usertest2@gmail.com', 'abc123', 'default.png', 1, 'Coder by day, gamer by night.'),
-('Carmen Low', 'usertest3@gmail.com', 'abc123', 'default.png', 1, 'Passionate about photography and coffee.'),
-('Daniel Wong', 'usertest4@gmail.com', 'abc123', 'default.png', 1, 'Enjoys hiking and tech meetups.'),
-('Evelyn Chua', 'usertest5@gmail.com', 'abc123', 'default.png', 1, 'Quiet but curious about everything.');
+
+
 
 INSERT INTO connections (user_id_1, user_id_2, status) VALUES
                                                            (1, 2, 'accepted'),
@@ -385,10 +399,10 @@ INSERT INTO connections (user_id_1, user_id_2, status) VALUES
                                                            (2, 4, 'pending'),
                                                            (3, 4, 'accepted');
 
-INSERT INTO events (name, date, location) VALUES
+INSERT INTO events (name, start_time, location) VALUES
                                               ('Circle Launch Event', '2025-08-01', 'Sunway Hall A'),
                                               ('Peer Mentorship Kickoff', '2025-08-10', 'Online'),
-                                              ('Tech Networking Day', '2025-08-20', 'Taylor\''s Auditorium');
+                                              ('Tech Networking Day', '2025-08-20', 'Taylor'' Auditorium');
 
 INSERT INTO user_events (user_id, event_id) VALUES
                                                 (1, 1),
@@ -403,40 +417,6 @@ INSERT INTO mentorships (mentor_id, mentee_id) VALUES
                                                    (1, 3),
                                                    (4, 1);
 
--- User 1 shares interests with Users 2 and 3
-INSERT INTO user_interests (user_id, interest_id) VALUES
-                                                      (1, 5),
-                                                      (1, 7),
-                                                      (1, 10),
-
--- User 2 shares 5 and 7 with User 1
-                                                      (2, 5),
-                                                      (2, 7),
-                                                      (2, 12),
-
--- User 3 shares 10 with User 1
-                                                      (3, 10),
-                                                      (3, 14),
-
--- User 4 has unique interests
-                                                      (4, 20),
-                                                      (4, 25),
-
--- User 5 shares 14 with User 3
-                                                      (5, 14),
-                                                      (5, 30),
-
--- User 6 shares 25 with User 4
-                                                      (6, 25),
-                                                      (6, 31),
-
--- Fill up to 20 entries with some variety
-                                                      (1, 15),
-                                                      (2, 18),
-                                                      (3, 22),
-                                                      (4, 24),
-                                                      (5, 26),
-                                                      (6, 28);
 
 CREATE TABLE match_requests (
                                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -457,7 +437,12 @@ INSERT INTO match_requests (sender_id, receiver_id, status, created_at, updated_
 VALUES
     (2, 1, 'pending', NOW(), NOW()),
     (3, 1, 'pending', NOW(), NOW()),
-    (4, 1, 'pending', NOW(), NOW());
+    (4, 1, 'pending', NOW(), NOW()),
+    (1, 11, 'accepted', NOW(), NOW()),
+    (1, 12, 'accepted', NOW(), NOW()),
+    (1, 13, 'accepted', NOW(), NOW()),
+    (1, 14, 'accepted', NOW(), NOW()),
+    (1, 15, 'accepted', NOW(), NOW());
 
 INSERT INTO events (
     creator_id, name, description, start_time, end_time, location, created_at, updated_at
@@ -473,10 +458,10 @@ INSERT INTO events (
          );
 
 -- Insert sample mentor data (users with IDs 4 and 5)
-INSERT INTO mentors (user_id, institution, club, expertise)
+INSERT INTO mentors (user_id, institution_id, club, expertise)
 VALUES
-    (4, 'University of Example', 'Coding Club', 'Web Development, React, Laravel'),
-    (5, 'Tech State College', 'AI Society', 'Machine Learning, Python, Data Analysis');
+    (4, 3 , 'Coding Club', 'Web Development, React, Laravel'),
+    (5, 5 , 'AI Society', 'Machine Learning, Python, Data Analysis');
 
 INSERT INTO mentor_requests (mentee_id, mentor_id, status, created_at, updated_at)
 VALUES

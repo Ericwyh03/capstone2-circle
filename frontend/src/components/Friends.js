@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../api/axios';
+import '../styles/friends.css'; // create this file if not existing
 
 function Friends() {
     const [friends, setFriends] = useState([]);
@@ -12,18 +13,25 @@ function Friends() {
 
     return (
         <div className="friends-page">
-            <h2>👥 Your Friends</h2>
+            <h2 className="friends-heading">👥 Your Circle</h2>
             {friends.length === 0 ? (
-                <p>No confirmed matches yet.</p>
+                <p className="no-friends">No confirmed matches yet. Start matching to grow your circle!</p>
             ) : (
-                <ul className="friend-list">
+                <div className="friends-grid">
                     {friends.map(friend => (
-                        <li key={friend.id} className="friend-card">
-                            <strong>{friend.name}</strong>
-                            <p>{friend.email}</p>
-                        </li>
+                        <div className="friend-card">
+                            <div className="friend-avatar">
+                                {friend.name?.[0] || "?"}
+                            </div>
+                            <div className="friend-info">
+                                <strong>{friend.name}</strong>
+                                <p title={friend.email}>{friend.email}</p>
+
+                            </div>
+                        </div>
+
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );

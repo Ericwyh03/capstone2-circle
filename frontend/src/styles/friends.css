@@ -1,0 +1,90 @@
+.friends-page {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.friends-heading {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.no-friends {
+    text-align: center;
+    color: #777;
+    margin-top: 2rem;
+}
+
+.friends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.friend-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 0.75rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.friend-card {
+
+}
+
+.friend-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+
+
+.friend-avatar {
+    width: 70px !important;            /* Force width */
+    height: 40px !important;           /* Fixed height */
+    min-width: 70px;                   /* Prevent shrinking */
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    margin-right: 1rem;
+    flex-shrink: 0;                    /* Prevent compression in flex row */
+}
+
+
+.friend-info {
+    flex: 1; /* Takes remaining space */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.friend-info p {
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.friend-info h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #222;
+}
